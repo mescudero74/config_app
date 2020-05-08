@@ -65,9 +65,9 @@ const makeParams = (params) => {
       "pantheon_node_perm_endpoint": params.pantheon_node_perm_endpoint
     },
     "alethio-lite-explorer": {
-      "path_helm_dapp": params.path_helm_dapp,
-      "path_helm_dapp_values": params.path_helm_dapp_values,
-      "path_helm_dapp_temp_values": params.path_helm_dapp_temp_values
+      "path_helm_dapp": params.path_helm_dapp_aletio,
+      "path_helm_dapp_values": params.path_helm_dapp_values_aletio,
+      "path_helm_dapp_temp_values": params.path_helm_dapp_temp_values_aletio
     }
   }
   return request

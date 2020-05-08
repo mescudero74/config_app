@@ -10,14 +10,6 @@ import { CreateEnvForm } from './Components/Forms/CreateEnvForm'
 import { CreateVeronaBuildForm } from './Components/Forms/CreateVeronaBuildForm'
 import './App.css';
 
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
-
 function App() {
   return (
     <div className="App">

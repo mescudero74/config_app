@@ -48,7 +48,6 @@ const SignupSchema = Yup.object().shape({
   path_ibftconfig: Yup.string().required("Required"),
   path_ibftconfig_perm: Yup.string().required("Required"),
   chain_id: Yup.string().required("Required"),
-  chain_id: Yup.string().required("Required"),
   path_prod_issuer: Yup.string().required("Required"),
   
   path_helm_dapp: Yup.string().required("Required"),
@@ -63,9 +62,9 @@ const SignupSchema = Yup.object().shape({
   pantheon_node_perm_endpoint: Yup.string().required("Required"),
 
 
-  path_helm_dapp: Yup.string().required("Required"),
-  path_helm_dapp_values: Yup.string().required("Required"),
-  path_helm_dapp_temp_values: Yup.string().required("Required"),
+  path_helm_dapp_aletio: Yup.string().required("Required"),
+  path_helm_dapp_values_aletio: Yup.string().required("Required"),
+  path_helm_dapp_temp_values_aletio: Yup.string().required("Required"),
 });
 
 export const CreateVeronaBuildForm = () => (
@@ -113,7 +112,6 @@ export const CreateVeronaBuildForm = () => (
         path_ibftconfig: "",
         path_ibftconfig_perm: "",
         chain_id: "",
-        chain_id: "",
         path_prod_issuer: "",
         path_helm_dapp: "",
         path_helm_dapp_values: "",
@@ -125,9 +123,9 @@ export const CreateVeronaBuildForm = () => (
         network_id: "",
         pantheon_node_perm_account: "",
         pantheon_node_perm_endpoint: "",
-        path_helm_dapp: "",
-        path_helm_dapp_values: "",
-        path_helm_dapp_temp_values: "",
+        path_helm_dapp_aletio: "",
+        path_helm_dapp_values_aletio: "",
+        path_helm_dapp_temp_values_aletio: "",
       }}
       validationSchema={SignupSchema}
       onSubmit={(values) => {
@@ -520,22 +518,22 @@ export const CreateVeronaBuildForm = () => (
             <label>path_helm_dapp:</label>
           </div>
           <div>
-            <Field name="path_helm_dapp" />
-            {errors.path_helm_dapp && touched.path_helm_dapp ? <div className="Required-form">{errors.path_helm_dapp}</div> : null}
+            <Field name="path_helm_dapp_aletio" />
+            {errors.path_helm_dapp_aletio && touched.path_helm_dapp_aletio ? <div className="Required-form">{errors.path_helm_dapp_aletio}</div> : null}
           </div>
           <div>
             <label>path_helm_dapp_values:</label>
           </div>
           <div>
-            <Field name="path_helm_dapp_values" />
-            {errors.path_helm_dapp_values && touched.path_helm_dapp_values ? <div className="Required-form">{errors.path_helm_dapp_values}</div> : null}
+            <Field name="path_helm_dapp_values_aletio" />
+            {errors.path_helm_dapp_values_aletio && touched.path_helm_dapp_values_aletio ? <div className="Required-form">{errors.path_helm_dapp_values_aletio}</div> : null}
           </div>
           <div>
             <label>path_helm_dapp_temp_values:</label>
           </div>
           <div>
-            <Field name="path_helm_dapp_temp_values" />
-            {errors.path_helm_dapp_temp_values && touched.path_helm_dapp_temp_values ? <div className="Required-form">{errors.path_helm_dapp_temp_values}</div> : null}
+            <Field name="path_helm_dapp_temp_values_aletio" />
+            {errors.path_helm_dapp_temp_values_aletio && touched.path_helm_dapp_temp_values_aletio ? <div className="Required-form">{errors.path_helm_dapp_temp_values_aletio}</div> : null}
           </div>
           <div>
             <button type="submit">Submit</button>
