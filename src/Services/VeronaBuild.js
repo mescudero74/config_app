@@ -85,3 +85,16 @@ export async function createVeronaBuild(params){
       return error;
     })
 }
+
+export async function updateVeronaBuild(params){
+  const body = makeParams(params)
+  console.log(body)
+  return await axios.put(`http://localhost:5000/verona_build/${params._id.$oid}`, body)
+    .then(function (response) {
+      console.log(response.data)
+      return response.data;
+    })
+    .catch(function (error) {
+      return error;
+    })
+}

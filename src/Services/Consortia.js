@@ -26,36 +26,3 @@ export async function createConsortium(params){
       return error;
     })
 }
-
-//export async function update(params) {
-//  const body = makeParams(params)
-//  return await axios.put(`http://localhost:5000/consorcios/${consortium_id}`, body)
-//    .then(function (response) {
-//      return response
-//    })
-//    .catch(function (error) {
-//      return error.response
-//    })
-//}
-
-//export const updateBeneficiary = async function update(params) {
-//  const body = makeParams(params)
-//  return await axios.put(`http://localhost:5000/consorcios/${beneficiary_id}`, body)
-//    .then(function (response) {
-//      return response
-//    })
-//    .catch(function (error) {
-//      return error.response
-//    })
-//}
-//
-//export const updateBeneficiary = async function update(params) {
-//  const body = makeParams(params)
-//  return await axios.put(`http://localhost:5000/consorcios/${beneficiary_id}`, body)
-//    .then(function (response) {
-//      return response
-//    })
-//    .catch(function (error) {
-//      return error.response
-//    })
-//}
