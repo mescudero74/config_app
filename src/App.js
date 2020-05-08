@@ -30,7 +30,7 @@ function App() {
                 <Link to="/crear_verona_build">Crear Verona Build</Link>
               </li>
               <li>
-                <Link to="/consorcios/crear_consorcio">Crear consorcio</Link>
+                <Link to="/crear_consorcio">Crear consorcio</Link>
               </li>
               <li>
                 <Link to="/crear_env">Crear Env</Link>
