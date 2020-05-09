@@ -26,11 +26,9 @@ export async function Consortium(){
 
 export async function createConsortium(params, setConsorcios){
   const body = makeParams(params)
-  console.log(body)
   return await axios.post(`http://localhost:5000/consorcios`, body)
     .then(function (response) {
       setConsorcios(response.data)
-      console.log(response.data)
       return response.data;
     })
     .catch(function (error) {
@@ -40,11 +38,9 @@ export async function createConsortium(params, setConsorcios){
 
 export async function updateConsortium(params, setConsorcios){
   const body = makeParams(params)
-  console.log(body)
   return await axios.put(`http://localhost:5000/consorcios/${params._id}`, body)
     .then(function (response) {
       setConsorcios(response.data)
-      console.log(response.data)
       return response.data;
     })
     .catch(function (error) {
@@ -56,7 +52,6 @@ export async function deleteConsortium(id, setConsorcios){
   return await axios.delete(`http://localhost:5000/consorcios/${id}`)
     .then(function (response) {
       setConsorcios(response.data)
-      console.log(response.data)
       return response.data;
     })
     .catch(function (error) {

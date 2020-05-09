@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { createConsortium } from '../../Services/Consortia'
+import { useHistory } from "react-router-dom";
 
 const SignupSchema = Yup.object().shape({
   type: Yup.string().required("Required"),
@@ -14,6 +15,7 @@ const SignupSchema = Yup.object().shape({
 
 export const CreateConsortiForm = (props) => {
   const { setConsorcios } = props;
+  const history = useHistory();
   return (
   <div>
     <h1>Crear consorcio</h1>
@@ -28,7 +30,8 @@ export const CreateConsortiForm = (props) => {
       }}
       validationSchema={SignupSchema}
       onSubmit={(values) => {
-        createConsortium(values, setConsorcios)
+        createConsortium(values, setConsorcios);
+        history.push("/consorcios");
       }}
     >
       {({ errors, touched }) => (

@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 import { updateEnv } from '../../Services/Env'
 
 const SignupSchema = Yup.object().shape({
@@ -15,6 +16,7 @@ const SignupSchema = Yup.object().shape({
 
 export const UpdateEnvForm = (props) => {
   const { setEnvs, env } = props;
+  const history = useHistory();
   return (
   <div>
     <h1>Actualizar env</h1>
@@ -32,6 +34,7 @@ export const UpdateEnvForm = (props) => {
       validationSchema={SignupSchema}
       onSubmit={(values) => {
         updateEnv(values, setEnvs)
+        history.push("/envs");
       }}
     >
       {({ errors, touched }) => (

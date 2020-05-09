@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const makeParams = (params) => {
-  console.log(params.test)
   var request = {
     "config": params.config,
     "version": parseInt(params.version),
@@ -77,7 +76,6 @@ const makeParams = (params) => {
 export async function VeronaBuild(){
   return await axios.get(`http://localhost:5000/verona_build`)
     .then(function (response) {
-      console.log(response.data)
       return response.data;
     })
     .catch(function (error) {
@@ -87,11 +85,9 @@ export async function VeronaBuild(){
 
 export async function createVeronaBuild(params, setVeronaBuilds){
   const body = makeParams(params)
-  console.log(body)
   return await axios.post(`http://localhost:5000/verona_build`, body)
     .then(function (response) {
       setVeronaBuilds(response.data)
-      console.log(response.data)
       return response.data;
     })
     .catch(function (error) {
@@ -101,11 +97,9 @@ export async function createVeronaBuild(params, setVeronaBuilds){
 
 export async function updateVeronaBuild(params, setVeronaBuilds){
   const body = makeParams(params)
-  console.log(body)
   return await axios.put(`http://localhost:5000/verona_build/${params._id}`, body)
     .then(function (response) {
       setVeronaBuilds(response.data)
-      console.log(response.data)
       return response.data;
     })
     .catch(function (error) {
@@ -117,7 +111,6 @@ export async function deleteVeronaBuild(id, setVeronaBuilds){
   return await axios.delete(`http://localhost:5000/verona_build/${id}`)
     .then(function (response) {
       setVeronaBuilds(response.data)
-      console.log(response.data)
       return response.data;
     })
     .catch(function (error) {

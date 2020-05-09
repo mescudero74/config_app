@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { createVeronaBuild } from '../../Services/VeronaBuild'
+import { useHistory } from "react-router-dom";
 
 const SignupSchema = Yup.object().shape({
   config: Yup.string().required("Required"),
@@ -69,6 +70,7 @@ const SignupSchema = Yup.object().shape({
 
 export const CreateVeronaBuildForm = (props) => {
   const { setVeronaBuilds } = props;
+  const history = useHistory();
   return (
   <div>
     <h1>Crear Verona Build</h1>
@@ -132,6 +134,7 @@ export const CreateVeronaBuildForm = (props) => {
       validationSchema={SignupSchema}
       onSubmit={(values) => {
         createVeronaBuild(values, setVeronaBuilds)
+        history.push("/verona_build");
       }}
     >
       {({ errors, touched }) => (
