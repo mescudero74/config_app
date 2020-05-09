@@ -15,6 +15,17 @@ const makeParams = (params) => {
   return request
 }
 
+export async function Env(){
+  return await axios.get(`http://localhost:5000/env`)
+    .then(function (response) {
+      console.log(response.data)
+      return response.data;
+    })
+    .catch(function (error) {
+      return error;
+    })
+}
+
 export async function createEnv(params, setEnvs){
   const body = makeParams(params)
   console.log(body)

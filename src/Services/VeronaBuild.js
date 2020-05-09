@@ -74,6 +74,17 @@ const makeParams = (params) => {
   return request
 }
 
+export async function VeronaBuild(){
+  return await axios.get(`http://localhost:5000/verona_build`)
+    .then(function (response) {
+      console.log(response.data)
+      return response.data;
+    })
+    .catch(function (error) {
+      return error;
+    })
+}
+
 export async function createVeronaBuild(params, setVeronaBuilds){
   const body = makeParams(params)
   console.log(body)

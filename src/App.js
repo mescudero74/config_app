@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,6 +15,9 @@ import { VeronaBuildTable } from './Components/Tables/VeronaBuildTable'
 import { EnvTable } from './Components/Tables/EnvTable'
 import { Menu } from './Components/Layouts/Menu'
 import './App.css';
+import { Consortium } from "./Services/Consortia"
+import { Env } from "./Services/Env"
+import { VeronaBuild } from "./Services/VeronaBuild"
 
 function App() {
   const [envs, setEnvs] = useState([]);
@@ -23,7 +26,14 @@ function App() {
   const [env, setEnv] = useState([]);
   const [veronaBuild, setVeronaBuild] = useState([])
   const [consorcio, setConsorcio] = useState([]);
-
+  useEffect(() => {
+    const updateRows = async () => {
+      setConsorcios(Consortium);
+      setVeronaBuilds(VeronaBuild);
+      setEnv(Env);
+    };
+    updateRows();
+  }, []);
   return (
     <div className="App">
         <Router>

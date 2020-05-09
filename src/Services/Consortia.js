@@ -14,6 +14,16 @@ const makeParams = (params) => {
   return request
 }
 
+export async function Consortium(){
+  return await axios.get(`http://localhost:5000/consorcios`)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      return error;
+    })
+}
+
 export async function createConsortium(params, setConsorcios){
   const body = makeParams(params)
   console.log(body)
