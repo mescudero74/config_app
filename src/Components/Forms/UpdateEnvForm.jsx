@@ -1,34 +1,37 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { createConsortium } from '../../Services/Consortia'
+import { updateEnv } from '../../Services/Env'
 
 const SignupSchema = Yup.object().shape({
   type: Yup.string().required("Required"),
   version: Yup.string().required("Required"),
   id: Yup.string().required("Required"),
+  consortium_id: Yup.string().required("Required"),
   name: Yup.string().required("Required"),
   state: Yup.string().required("Required"),
-  mail: Yup.string().required("Required"),
+  nodes: Yup.string().required("Required"),
 });
 
-export const CreateConsortiForm = (props) => {
-  const { setConsorcios } = props;
+export const UpdateEnvForm = (props) => {
+  const { setEnvs, env } = props;
   return (
   <div>
-    <h1>Crear consorcio</h1>
+    <h1>Actualizar env</h1>
     <Formik
       initialValues={{
-        type: "",
-        version: "",
-        id: "",
-        name: "",
-        state: "",
-        mail: ""
+        _id: env._id.$oid,
+        type: env.tipo,
+        version: env.version,
+        consortium_id: env.consorcio_id,
+        id: env.env.id,
+        name: env.env.name,
+        state: env.env.estado,
+        nodes: env.env.nodos
       }}
       validationSchema={SignupSchema}
       onSubmit={(values) => {
-        createConsortium(values, setConsorcios)
+        updateEnv(values, setEnvs)
       }}
     >
       {({ errors, touched }) => (
@@ -49,7 +52,16 @@ export const CreateConsortiForm = (props) => {
               <div className="Required-form">{errors.version}</div>
             ) : null}
           </div>
-          <h2>Consorcio</h2>
+          <div>
+            <label>Consorcio:</label>
+          </div>
+          <div>
+            <Field name="consortium_id" />
+            {errors.consortium_id && touched.consortium_id ? (
+              <div className="Required-form">{errors.consortium_id}</div>
+            ) : null}
+          </div>
+          <h2>Environment:</h2>
           <div>
             <label>Id:</label>
           </div>
@@ -72,14 +84,14 @@ export const CreateConsortiForm = (props) => {
             {errors.state && touched.state ? <div className="Required-form">{errors.state}</div> : null}
           </div>
           <div>
-            <label>Email:</label>
+            <label>Nodos:</label>
           </div>
           <div>
-            <Field name="mail" type="email" />
-            {errors.mail && touched.mail ? <div className="Required-form">{errors.mail}</div> : null}
+            <Field name="nodes"/>
+            {errors.nodes && touched.nodes ? <div className="Required-form">{errors.nodes}</div> : null}
           </div>
           <div>
-            <button type="submit">Crear</button>
+            <button type="submit">Actualizar</button>
           </div>
         </Form>
       )}

@@ -13,7 +13,9 @@ const SignupSchema = Yup.object().shape({
   nodes: Yup.string().required("Required"),
 });
 
-export const CreateEnvForm = () => (
+export const CreateEnvForm = (props) => {
+  const { setEnvs } = props;
+  return (
   <div>
     <h1>Crear env</h1>
     <Formik
@@ -28,7 +30,7 @@ export const CreateEnvForm = () => (
       }}
       validationSchema={SignupSchema}
       onSubmit={(values) => {
-        createEnv(values)
+        createEnv(values, setEnvs)
       }}
     >
       {({ errors, touched }) => (
@@ -94,4 +96,4 @@ export const CreateEnvForm = () => (
       )}
     </Formik>
   </div>
-);
+)};

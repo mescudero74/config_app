@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -10,6 +11,7 @@ import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import Icon from "@material-ui/core/Icon";
+import { deteleEnv } from "../../Services/Env"
 
 const useStyles = makeStyles({
   table: {
@@ -17,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-const rows = [
+const data = [
   {
     _id: {
       $oid: "5eb4692b8f5d5dd2d0d08648",
@@ -65,9 +67,16 @@ const rows = [
   },
 ];
 
-export const EnvTable = () => {
+export const EnvTable = (props) => {
+  const [rows, setRows] = useState([]);
+  const { env, setEnv, setEnvs } = props;
   const classes = useStyles();
-
+  useEffect(() => {
+    const updateRows = async () => {
+      setRows(data);
+    };
+    updateRows();
+  }, [env]);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -91,18 +100,21 @@ export const EnvTable = () => {
             <TableRow key={row.name}>
               <TableCell>
                 <Icon color="primary">add_circle</Icon>
-                <EditIcon
-                  color="primary"
+                <Link
+                  to="/editar_env"
                   onClick={() => {
-                    console.log("edit");
+                    setEnv(row);
                   }}
-                />
-                <DeleteIcon
-                  color="primary"
+                >
+                  <EditIcon color="primary" />
+                </Link>
+                <Link
                   onClick={() => {
-                    console.log("delete");
+                    deteleEnv(row._id.$oid, setEnvs);
                   }}
-                />
+                >
+                  <DeleteIcon color="primary" />
+                </Link>
               </TableCell>
               <TableCell align="right" component="th" scope="row">
                 {row._id.$oid}

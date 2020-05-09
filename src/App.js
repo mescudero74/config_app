@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,6 +7,9 @@ import {
 import { CreateConsortiForm } from './Components/Forms/CreateConsortiForm'
 import { CreateEnvForm } from './Components/Forms/CreateEnvForm'
 import { CreateVeronaBuildForm } from './Components/Forms/CreateVeronaBuildForm'
+import { UpdateConsortiForm } from './Components/Forms/UpdateConsortiForm'
+import { UpdateEnvForm } from './Components/Forms/UpdateEnvForm'
+import { UpdateVeronaBuildForm } from './Components/Forms/UpdateVeronaBuild'
 import { ConsortiumTable } from './Components/Tables/ConsortiumTable'
 import { VeronaBuildTable } from './Components/Tables/VeronaBuildTable'
 import { EnvTable } from './Components/Tables/EnvTable'
@@ -30,22 +33,32 @@ function App() {
         <div>
           <Switch>
           <Route path="/consorcios">
-              <ConsortiumTable consorcios={consorcios}/>
+              <ConsortiumTable consorcios={consorcios} setConsorcio={setConsorcio}/>
             </Route>
             <Route path="/envs">
-              <EnvTable envs={envs}/>
+              <EnvTable envs={envs} setEnv={setEnv}/>
             </Route>
             <Route path="/verona_build">
-              <VeronaBuildTable veronaBuilds={veronaBuilds}/>
+              <VeronaBuildTable veronaBuilds={veronaBuilds} setVeronaBuild={setVeronaBuild}/>
             </Route>
             <Route exact path="/crear_consorcio">
-              <CreateConsortiForm />
+              <CreateConsortiForm setConsorcios={setConsorcios}/>
             </Route>
             <Route path="/crear_env">
-              <CreateEnvForm />
+              <CreateEnvForm setEnvs={setEnvs}/>
             </Route>
             <Route path="/crear_verona_build">
-              <CreateVeronaBuildForm />
+              <CreateVeronaBuildForm setVeronaBuilds={setVeronaBuilds}/>
+            </Route>
+
+            <Route exact path="/editar_consorcio">
+              <UpdateConsortiForm setConsorcios={setConsorcios} consorcio={consorcio}/>
+            </Route>
+            <Route path="/editar_env">
+              <UpdateEnvForm setEnvs={setEnvs} env={env}/>
+            </Route>
+            <Route path="/editar_verona_build">
+              <UpdateVeronaBuildForm setVeronaBuilds={setVeronaBuilds} veronaBuild={veronaBuild}/>
             </Route>
           </Switch>
         </div>

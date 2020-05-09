@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { createConsortium } from '../../Services/Consortia'
+import { updateConsortium } from '../../Services/Consortia'
 
 const SignupSchema = Yup.object().shape({
   type: Yup.string().required("Required"),
@@ -12,23 +12,24 @@ const SignupSchema = Yup.object().shape({
   mail: Yup.string().required("Required"),
 });
 
-export const CreateConsortiForm = (props) => {
-  const { setConsorcios } = props;
+export const UpdateConsortiForm = (props) => {
+  const { setConsorcios, consorcio } = props;
   return (
   <div>
-    <h1>Crear consorcio</h1>
+    <h1>Editar consorcio</h1>
     <Formik
       initialValues={{
-        type: "",
-        version: "",
-        id: "",
-        name: "",
-        state: "",
-        mail: ""
+        _id: consorcio._id.$oid,
+        type: consorcio.tipo,
+        version: consorcio.version,
+        id: consorcio.consorcio.id,
+        name: consorcio.consorcio.name,
+        state: consorcio.consorcio.estado,
+        mail: consorcio.consorcio.mail
       }}
       validationSchema={SignupSchema}
       onSubmit={(values) => {
-        createConsortium(values, setConsorcios)
+        updateConsortium(values, setConsorcios)
       }}
     >
       {({ errors, touched }) => (
@@ -37,7 +38,7 @@ export const CreateConsortiForm = (props) => {
             <label>Tipo:</label>
           </div>
           <div>
-            <Field name="type" />
+            <Field name="type" values={"algo"}/>
             {errors.type && touched.type ? <div className="Required-form">{errors.type}</div> : null}
           </div>
           <div>
@@ -79,7 +80,7 @@ export const CreateConsortiForm = (props) => {
             {errors.mail && touched.mail ? <div className="Required-form">{errors.mail}</div> : null}
           </div>
           <div>
-            <button type="submit">Crear</button>
+            <button type="submit">Actualizar</button>
           </div>
         </Form>
       )}

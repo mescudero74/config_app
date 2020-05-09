@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { createVeronaBuild } from '../../Services/VeronaBuild'
+import { updateVeronaBuild } from '../../Services/VeronaBuild'
 
 const SignupSchema = Yup.object().shape({
   config: Yup.string().required("Required"),
@@ -48,6 +48,7 @@ const SignupSchema = Yup.object().shape({
   path_ibftconfig: Yup.string().required("Required"),
   path_ibftconfig_perm: Yup.string().required("Required"),
   chain_id: Yup.string().required("Required"),
+  validators_count: Yup.string().required("Required"),
   path_prod_issuer: Yup.string().required("Required"),
   
   path_helm_dapp: Yup.string().required("Required"),
@@ -67,71 +68,73 @@ const SignupSchema = Yup.object().shape({
   path_helm_dapp_temp_values_aletio: Yup.string().required("Required"),
 });
 
-export const CreateVeronaBuildForm = (props) => {
-  const { setVeronaBuilds } = props;
+export const UpdateVeronaBuildForm = (props) => {
+  const { setVeronaBuilds, veronaBuild } = props;
   return (
   <div>
-    <h1>Crear Verona Build</h1>
+    <h1>Actualizar Verona Build</h1>
     <Formik
       initialValues={{
-        config: "",
-        version: "",
-        test: "",
-        id_verona_build: "",
-        estado_build: "",
-        consorcio: "",
-        mail: "",
-        tenant: "",
-        tenant_id: "",
-        client_id: "",
-        secret: "",
-        subscription_id: "",
-        location: "",
-        aks_name: "",
-        aks_version: "",
-        resource_group_name: "",
-        username: "",
-        vm_count: "",
-        vm_size: "",
-        ssh_key: "",
-        client_id_AKS: "",
-        client_secret_AKS: "",
-        default: "",
-        environment: "",
-        project: "",
-        path_kube_config: "",
-        path_data_besu: "",
-        balance_account: "",
-        final_path_ibftconfig: "",
-        final_path_ibftconfig_perm: "",
-        path_helm_rbac: "",
-        path_genesis: "",
-        path_helm_temp_values: "",
-        path_helm_values: "",
-        path_helm_besu: "",
-        path_besu: "",
-        path_orion: "",
-        path_ibftconfig: "",
-        path_ibftconfig_perm: "",
-        chain_id: "",
-        path_prod_issuer: "",
-        path_helm_dapp: "",
-        path_helm_dapp_values: "",
-        path_helm_dapp_temp_values: "",
-        account_ingress_contract_address: "",
-        node_ingress_contract_address: "",
-        initial_whitelisted_account: "",
-        pantheon_node_perm_key: "",
-        network_id: "",
-        pantheon_node_perm_account: "",
-        pantheon_node_perm_endpoint: "",
-        path_helm_dapp_aletio: "",
-        path_helm_dapp_values_aletio: "",
-        path_helm_dapp_temp_values_aletio: "",
+        _id: veronaBuild._id.$oid,
+        config: veronaBuild.config,
+        version: veronaBuild.version,
+        test: veronaBuild.test.toString(),
+        id_verona_build: veronaBuild.id_verona_build,
+        estado_build: veronaBuild.estado_build,
+        consorcio: veronaBuild.consorcio,
+        mail: veronaBuild.mail,
+        tenant: veronaBuild.connect.tenant,
+        tenant_id: veronaBuild.connect.tenant_id,
+        client_id: veronaBuild.connect.client_id,
+        secret: veronaBuild.connect.secret,
+        subscription_id: veronaBuild.connect.subscription_id,
+        location: veronaBuild.cloud.location,
+        aks_name: veronaBuild.cloud.aks_name,
+        aks_version: veronaBuild.cloud.aks_version,
+        resource_group_name: veronaBuild.cloud.resource_group_name,
+        username: veronaBuild.cloud.username,
+        vm_count: veronaBuild.cloud.vm_count,
+        vm_size: veronaBuild.cloud.vm_size,
+        ssh_key: veronaBuild.cloud.ssh_key,
+        client_id_AKS: veronaBuild.cloud.client_id_AKS,
+        client_secret_AKS: veronaBuild.cloud.client_secret_AKS,
+        default: veronaBuild.cloud.default,
+        environment: veronaBuild.cloud.stags.Environment,
+        project: veronaBuild.cloud.stags.project,
+        path_kube_config: veronaBuild.besu.path_kube_config,
+        path_data_besu: veronaBuild.besu.path_data_besu,
+        balance_account: veronaBuild.besu.balance_account,
+        final_path_ibftconfig: veronaBuild.besu.final_path_ibftconfig,
+        final_path_ibftconfig_perm: veronaBuild.besu.final_path_ibftconfig_perm,
+        path_helm_rbac: veronaBuild.besu.path_helm_rbac,
+        path_genesis: veronaBuild.besu.path_genesis,
+        path_helm_temp_values: veronaBuild.besu.path_helm_temp_values,
+        path_helm_values: veronaBuild.besu.path_helm_values,
+        path_helm_besu: veronaBuild.besu.path_helm_besu,
+        path_besu: veronaBuild.besu.path_besu,
+        path_orion: veronaBuild.besu.path_orion,
+        path_ibftconfig: veronaBuild.besu.path_ibftconfig,
+        path_ibftconfig_perm: veronaBuild.besu.path_ibftconfig_perm,
+        chain_id: veronaBuild.besu.chain_id,
+        validators_count: veronaBuild.besu.validators_count,
+        path_prod_issuer: veronaBuild.besu.path_prod_issuer,
+        path_helm_dapp: veronaBuild.dapp.path_helm_dapp,
+        path_helm_dapp_values: veronaBuild.dapp.path_helm_dapp_values,
+        path_helm_dapp_temp_values: veronaBuild.dapp.path_helm_dapp_temp_values,
+        account_ingress_contract_address: veronaBuild.dapp.account_ingress_contract_address,
+        node_ingress_contract_address: veronaBuild.dapp.node_ingress_contract_address,
+        initial_whitelisted_account: veronaBuild.dapp.initial_whitelisted_account,
+        pantheon_node_perm_key: veronaBuild.dapp.pantheon_node_perm_key,
+        network_id: veronaBuild.dapp.network_id,
+        pantheon_node_perm_account: veronaBuild.dapp.pantheon_node_perm_account,
+        pantheon_node_perm_endpoint: veronaBuild.dapp.pantheon_node_perm_endpoint,
+        path_helm_dapp_aletio: veronaBuild["alethio-lite-explorer"].path_helm_dapp,
+        path_helm_dapp_values_aletio: veronaBuild["alethio-lite-explorer"].path_helm_dapp_values,
+        path_helm_dapp_temp_values_aletio: veronaBuild["alethio-lite-explorer"].path_helm_dapp_temp_values,
       }}
       validationSchema={SignupSchema}
       onSubmit={(values) => {
-        createVeronaBuild(values, setVeronaBuilds)
+        updateVeronaBuild(values, setVeronaBuilds)
       }}
     >
       {({ errors, touched }) => (
@@ -538,7 +541,8 @@ export const CreateVeronaBuildForm = (props) => {
             {errors.path_helm_dapp_temp_values_aletio && touched.path_helm_dapp_temp_values_aletio ? <div className="Required-form">{errors.path_helm_dapp_temp_values_aletio}</div> : null}
           </div>
           <div>
-            <button type="submit">Submit</button>
+            <button type="submit">Actualizar</button>
+            <button type="submit" onClick={() => {console.log("creo")}}>Crear</button>
           </div>
         </Form>
       )}
