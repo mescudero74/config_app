@@ -262,7 +262,7 @@ export const VeronaBuildTable = (props) => {
   const classes = useStyles();
   useEffect(() => {
     const updateRows = async () => {
-      setRows(data);
+      setRows(veronaBuilds);
     };
     updateRows();
   }, [veronaBuilds]);

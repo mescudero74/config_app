@@ -69,14 +69,14 @@ const data = [
 
 export const EnvTable = (props) => {
   const [rows, setRows] = useState([]);
-  const { env, setEnv, setEnvs } = props;
+  const { envs, setEnv, setEnvs } = props;
   const classes = useStyles();
   useEffect(() => {
     const updateRows = async () => {
-      setRows(data);
+      setRows(envs);
     };
     updateRows();
-  }, [env]);
+  }, [envs]);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">

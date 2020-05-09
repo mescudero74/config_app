@@ -70,7 +70,7 @@ export const ConsortiumTable = (props) => {
   const classes = useStyles();
   useEffect(() => {
     const updateRows = async () => {
-      setRows(data);
+      setRows(consorcios);
     };
     updateRows();
   }, [consorcios]);
