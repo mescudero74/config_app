@@ -98,10 +98,10 @@ export async function createVeronaBuild(params, setVeronaBuilds) {
 }
 
 export async function initVeronaBuild(id) {
+  alert("pon las variables de entorno si no no va a funcionar si ya las pusiste ignora esto")
   return await axios
     .post(
-      `${process.env.REACT_APP_API_VERONA_URL}:${process.env.REACT_APP_API_VERONA_PORT}/build_verona/${id}`,
-      body
+      `${process.env.REACT_APP_API_VERONA_URL}:${process.env.REACT_APP_API_VERONA_PORT}/build_verona/${id}`
     )
     .then(function (response) {
       alert("Se inicio lo que quieres que se inicie");
