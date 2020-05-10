@@ -15,7 +15,7 @@ const makeParams = (params) => {
 }
 
 export async function Consortium(){
-  return await axios.get(`http://localhost:5000/consorcios`)
+  return await axios.get(`${process.env.REACT_APP_API_URL}/consorcios`)
     .then(function (response) {
       return response.data;
     })
@@ -26,7 +26,7 @@ export async function Consortium(){
 
 export async function createConsortium(params, setConsorcios){
   const body = makeParams(params)
-  return await axios.post(`http://localhost:5000/consorcios`, body)
+  return await axios.post(`${process.env.REACT_APP_API_URL}/consorcios`, body)
     .then(function (response) {
       setConsorcios(response.data)
       return response.data;
@@ -38,7 +38,7 @@ export async function createConsortium(params, setConsorcios){
 
 export async function updateConsortium(params, setConsorcios){
   const body = makeParams(params)
-  return await axios.put(`http://localhost:5000/consorcios/${params._id}`, body)
+  return await axios.put(`${process.env.REACT_APP_API_URL}/consorcios/${params._id}`, body)
     .then(function (response) {
       setConsorcios(response.data)
       return response.data;
@@ -49,7 +49,7 @@ export async function updateConsortium(params, setConsorcios){
 }
 
 export async function deleteConsortium(id, setConsorcios){
-  return await axios.delete(`http://localhost:5000/consorcios/${id}`)
+  return await axios.delete(`${process.env.REACT_APP_API_URL}/consorcios/${id}`)
     .then(function (response) {
       setConsorcios(response.data)
       return response.data;

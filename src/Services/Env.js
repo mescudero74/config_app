@@ -16,8 +16,9 @@ const makeParams = (params) => {
 }
 
 export async function Env(){
-  return await axios.get(`http://localhost:5000/env`)
+  return await axios.get(`${process.env.REACT_APP_API_URL}/env`)
     .then(function (response) {
+      console.log(response.data)
       return response.data;
     })
     .catch(function (error) {
@@ -27,7 +28,7 @@ export async function Env(){
 
 export async function createEnv(params, setEnvs){
   const body = makeParams(params)
-  return await axios.post(`http://localhost:5000/env`, body)
+  return await axios.post(`${process.env.REACT_APP_API_URL}/env`, body)
     .then(function (response) {
       setEnvs(response.data)
       return response.data;
@@ -39,7 +40,7 @@ export async function createEnv(params, setEnvs){
 
 export async function updateEnv(params, setEnvs){
   const body = makeParams(params)
-  return await axios.put(`http://localhost:5000/env/${params._id}`, body)
+  return await axios.put(`${process.env.REACT_APP_API_URL}/env/${params._id}`, body)
     .then(function (response) {
       setEnvs(response.data)
       return response.data;
@@ -50,7 +51,7 @@ export async function updateEnv(params, setEnvs){
 }
 
 export async function deteleEnv(id, setEnvs){
-  return await axios.delete(`http://localhost:5000/env/${id}`)
+  return await axios.delete(`${process.env.REACT_APP_API_URL}/env/${id}`)
     .then(function (response) {
       setEnvs(response.data)
       return response.data;

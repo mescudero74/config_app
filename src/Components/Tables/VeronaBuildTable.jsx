@@ -11,7 +11,7 @@ import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import Icon from "@material-ui/core/Icon";
-import { deleteVeronaBuild } from '../../Services/VeronaBuild'
+import { deleteVeronaBuild, InitVeronaBuild } from '../../Services/VeronaBuild'
 
 const useStyles = makeStyles({
   table: {
@@ -283,7 +283,13 @@ export const VeronaBuildTable = (props) => {
           {rows.map((row) => (
             <TableRow key={row.name}>
               <TableCell>
+              <Link
+                  onClick={() => {
+                    InitVeronaBuild(row._id.$oid);
+                  }}
+                >
                 <Icon color="primary">add_circle</Icon>
+                </Link>
                 <Link
                   to="/editar_verona_build"
                   onClick={() => {
