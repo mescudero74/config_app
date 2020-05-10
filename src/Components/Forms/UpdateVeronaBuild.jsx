@@ -545,7 +545,7 @@ export const UpdateVeronaBuildForm = (props) => {
           </div>
           <div>
             <button type="submit">Actualizar</button>
-            <button type="submit" onClick={() => {alert("TODAVIA NO FUNCIONO")}>Crear</button>
+            <button type="submit" onClick={() => {window.alert("tambien actualizo porque todavia no funciono bien")}}>Crear</button>
           </div>
         </Form>
       )}
