@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
-import { updateVeronaBuild } from '../../Services/VeronaBuild'
+import { updateVeronaBuild, createVeronaBuild } from '../../Services/VeronaBuild'
 
 const SignupSchema = Yup.object().shape({
   config: Yup.string().required("Required"),
@@ -72,6 +72,7 @@ const SignupSchema = Yup.object().shape({
 export const UpdateVeronaBuildForm = (props) => {
   const { setVeronaBuilds, veronaBuild } = props;
   const history = useHistory();
+  var edit = true;
   return (
   <div>
     <h1>Actualizar Verona Build</h1>
@@ -136,7 +137,7 @@ export const UpdateVeronaBuildForm = (props) => {
       }}
       validationSchema={SignupSchema}
       onSubmit={(values) => {
-        updateVeronaBuild(values, setVeronaBuilds)
+        edit == true ? updateVeronaBuild(values, setVeronaBuilds) : createVeronaBuild(values, setVeronaBuilds)
         history.push("/verona_build");
       }}
     >
@@ -544,8 +545,8 @@ export const UpdateVeronaBuildForm = (props) => {
             {errors.path_helm_dapp_temp_values_aletio && touched.path_helm_dapp_temp_values_aletio ? <div className="Required-form">{errors.path_helm_dapp_temp_values_aletio}</div> : null}
           </div>
           <div>
-            <button type="submit">Actualizar</button>
-            <button type="submit" onClick={() => {window.alert("tambien actualizo porque todavia no funciono bien")}}>Crear</button>
+            <button type="submit" >Actualizar</button>
+            <button type="submit" onClick={() => {edit = !edit}}>Crear</button>
           </div>
         </Form>
       )}
